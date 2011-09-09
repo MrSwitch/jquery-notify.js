@@ -135,6 +135,12 @@ leveraging the best the browser can offer. Checkout the techniques below.</p>
 <h3>3. send a message</h3>
 <p><code>$.notify( url Image, string Title, string Description);</code></p>
 <pre class="demo">
+$.notify("star.ico","Hello","This is a test");
+</pre>
+<button></button>
+
+<p>Or add a bit more logic and leverage browser capabilities</p>
+<pre class="demo">
 // Some logic to request the browser supports it.
 $.notifyRequest(function(){
 
@@ -143,7 +149,7 @@ $.notifyRequest(function(){
 
 });
 </pre>
-<button></button>
+<button onclick='$.notifyRequest(function(){$.notify("star.ico","Hello","This is a test");});'></button>
 
 <h2>notify when new items arrive in an RSS feed</h2>
 <p>We can listen to an RSS feed too, but we pass in an object like this instead 
@@ -190,7 +196,7 @@ if($.notifyCheck() === 1){
 // attach this to a button click event or automatically load it.
 $.notifyRequest();
 </pre>
-<button></button>
+<button onclick="$.notifyRequest();"></button>
 
 
 <h2>that's all folks</h2>
@@ -203,10 +209,12 @@ var btns = document.getElementsByTagName('button');
 for(var i=0;i<btns.length;i++){
 	if(!btns[i].innerHTML){
 		btns[i].innerHTML = "try it";
-		btns[i].onclick = function(){
-			var btn = this;
-			setTimeout( function(){ eval(btn.previousElementSibling.innerText); }, 100);
-		};
+		if(!btns[i].onclick){
+			btns[i].onclick = function(){
+				var btn = this;
+				setTimeout( function(){ eval(btn.previousElementSibling.innerText); }, 100);
+			};
+		}
 	}
 }
 
