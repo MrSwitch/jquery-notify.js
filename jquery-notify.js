@@ -44,6 +44,7 @@
 		notifyRequest : function(cb){
 			// Setup
 			// triggers the authentication to create a notification
+			cb = cb || function(){};
 	
 			// IE9
 			if(("external" in window) && ("msIsSiteMode" in window.external)){
