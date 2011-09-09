@@ -149,7 +149,7 @@ $.notifyRequest(function(){
 
 });
 </pre>
-<button onclick="$.notifyRequest(function(){$.notify('star.ico','Hello','This is a test');});"></button>
+<button id="demo1"></button>
 
 <h2>notify when new items arrive in an RSS feed</h2>
 <p>We can listen to an RSS feed too, but we pass in an object like this instead 
@@ -209,7 +209,7 @@ var btns = document.getElementsByTagName('button');
 for(var i=0;i<btns.length;i++){
 	if(!btns[i].innerHTML){
 		btns[i].innerHTML = "try it";
-		if(!btns[i].onclick){
+		if(!btns[i].id){
 			btns[i].onclick = function(){
 				var btn = this;
 				setTimeout( function(){ eval(btn.previousElementSibling.innerText); }, 100);
@@ -217,6 +217,12 @@ for(var i=0;i<btns.length;i++){
 		}
 	}
 }
+
+$("#demo1").click(function(e){
+	$.notifyRequest(function(){$.notify('star.ico','Hello','This is a test');});
+	e.stopPropagation();
+	e.preventDefault();
+});
 
 </script>
 

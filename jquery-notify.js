@@ -74,7 +74,6 @@
 			if( typeof(icon) === 'string' ){
 				createNotification( icon || star, title, description);
 			}
-	
 			else if( typeof(icon) === 'object' ){
 	
 				var o = icon,
@@ -191,7 +190,6 @@
 		// @title string
 		// @description string
 		// @ttl string
-		
 		
 		//
 		// Swap document.title
