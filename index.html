@@ -135,13 +135,12 @@ leveraging the best the browser can offer. Checkout the techniques below.</p>
 
 <h3>3. send a message</h3>
 <p><code>$.notify( url Image, string Title, string Description);</code></p>
-<pre class="demo">
+<pre class="tryit">
 $.notify("star.ico","Hello","This is a test");
 </pre>
-<button></button>
 
 <p>Or add a bit more logic and leverage browser capabilities</p>
-<pre class="demo">
+<pre class="tryit">
 // Some logic to request the browser supports it.
 $.notifyRequest(function(){
 
@@ -150,13 +149,12 @@ $.notifyRequest(function(){
 
 });
 </pre>
-<button id="demo1"></button>
 
 <h2>notify when new items arrive in an RSS feed</h2>
 <p>We can listen to an RSS feed too, but we pass in an object like this instead 
 of a string.</p>
 
-<pre>
+<pre class="tryit">
 $.notify({
 	path : "http://feeds.bbci.co.uk/news/rss.xml", <em>//required</em>
 	interval : 60,      <em>//optional (number of seconds between requests, default is 60)</em>
@@ -164,14 +162,13 @@ $.notify({
 	initial : false     <em>//optional (this just shows notifications on the first pass, by default this is true, and we wont see the diference)</em>
 });
 </pre>
-<button></button>
 
 
 <h2>enable desktop notifications</h2>
 <h3>check permission</h3>
 <p>To use the desktop notifications we need to request permission. So first lets check whether 
 your browser supports it?</p>
-<pre>
+<pre class="tryit">
 var chck = $.notifyCheck();
 if( chck === 0 ){
 	alert("Yes enabled") 
@@ -183,7 +180,6 @@ else if( chck === -1 ){
 	alert("Browser does not support it") 
 }
 </pre>
-<button onclick="eval(this.previousElementSibling.innerText);"></button>
 <p>If&nbsp; <code>$.notifyCheck() === 1</code>, then perhaps prompt the user to 
 enable it?</p>
 <pre>
@@ -193,40 +189,15 @@ if($.notifyCheck() === 1){
 </pre>
 
 <h3>request permission</h3>
-<pre>
+<pre class="tryit">
 // attach this to a button click event or automatically load it.
 $.notifyRequest();
 </pre>
-<button onclick="$.notifyRequest();"></button>
 
 
 <h2>that's all folks</h2>
 <p>Now go to first demo above and run it!</p>
 
-
-<script>
-
-var btns = document.getElementsByTagName('button');
-for(var i=0;i<btns.length;i++){
-	if(!btns[i].innerHTML){
-		btns[i].innerHTML = "try it";
-		if(!btns[i].id){
-			btns[i].onclick = function(){
-				var btn = this,
-					t = btn.previousElementSibling;
-				setTimeout( function(){ eval(t.innerText||t.textContent); }, 100);
-			};
-		}
-	}
-}
-
-$("#demo1").click(function(e){
-	$.notifyRequest(function(){$.notify('star.ico','Hello','This is a test');});
-	e.stopPropagation();
-	e.preventDefault();
-});
-
-</script>
 
 </body>
 </html>
